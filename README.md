@@ -27,5 +27,5 @@ License
 ----------
 &copy; 2013 mas0061
 Licensed under the [MIT License][MIT].
- 
+
 [MIT]: <a href="http://www.opensource.org/licenses/mit-license.php" target="_blank" rel="noreferrer" style="cursor:help;display:inline !important;">http://www.opensource.org/licenses/mit-license.php</a>

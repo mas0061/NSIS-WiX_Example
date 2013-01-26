@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+    <Product Id="4810A75B-54CD-4902-AA51-20F090ED14C1" Name="Hoge Toolbox" Language="1041" Version="$(var.TOOL_VERSION)" Manufacturer="SCSK Corporation" UpgradeCode="9EA451D8-25A5-4D82-9523-B593C92D927A" Codepage="932">
+        <Package Description="Hoge Toolbox installer" Comments="Hoge Toolbox installer" InstallerVersion="200" Compressed="yes" SummaryCodepage="932" Platform="$(var.ARCH)" />
+        <Media Id="1" Cabinet="simple.cab" EmbedCab="yes" />
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="$(var.PROGRA_FILE)" Name="PFiles">
+                <Directory Id="HogeFiles" Name="Hoge Toolbox $(var.TOOL_VERSION)" />
+            </Directory>
+            <Directory Id="ProgramMenuFolder" Name="StartMenu">
+                <Directory Id="ProgramMenuDir" Name="Hoge">
+                    <Component Id="ApplicationShortCut_GUI" Guid="2CFD57BE-A0B5-4709-971C-BB813D3B89C7">
+                        <Shortcut Id="GUIShortcut" Name="Hoge Toolbox" Target="[HogeFiles]bin\vppgde.exe" />
+                        <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Type="integer" Value="1" KeyPath="yes" />
+                    </Component>
+                    <Component Id="StartMenuShortcuts" Guid="5A9F5781-A7B2-4B6F-852D-C15EF05DA7AF">
+                        <RemoveFolder Id="ProgramMenuDir" On="uninstall" />
+                        <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Value="" />
+                        <util:InternetShortcut Id="WebsiteShortcut" Name="Hoge web site" Target="http://www.hoge.com/" />
+                        <Shortcut Id="UninstallProduct" Name="Uninstall" Description="Uninstalls Hoge Tools" Target="[$(var.SYS_FOLDER)]msiexec.exe" Arguments="/x [ProductCode]" />
+                    </Component>
+                </Directory>
+            </Directory>
+        </Directory>
+        <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
+            <ComponentGroupRef Id="CG_NAME" />
+            <ComponentRef Id="ApplicationShortCut_GUI" />
+            <ComponentRef Id="StartMenuShortcuts" />
+        </Feature>
+        <UI />
+        <UIRef Id="WixUI_InstallDir" />
+        <UIRef Id="WixUI_ErrorProgressText" />
+        <Property Id="WIXUI_INSTALLDIR" Value="HogeFiles" />
+        <WixVariable Id="WixUILicenseRtf" Value="ja.rtf" />
+        <Upgrade Id="B43E59F9-672E-41F0-A913-877537DD7359">
+            <UpgradeVersion Property="PREVIOUSFOUND" Minimum="$(var.TOOL_VERSION)" />
+        </Upgrade>
+        <InstallExecuteSequence>
+            <RemoveExistingProducts After="InstallInitialize" />
+        </InstallExecuteSequence>
+    </Product>
+</Wix>
