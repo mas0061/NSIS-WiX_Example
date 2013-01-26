@@ -26,4 +26,4 @@ WiX - Description of parameter
 License
 ----------
 &copy; 2013 mas0061
-Licensed under the [MIT License](<a href="http://www.opensource.org/licenses/mit-license.php" target="_blank" rel="noreferrer" style="cursor:help;display:inline !important;">http://www.opensource.org/licenses/mit-license.php</a>).
+Licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
